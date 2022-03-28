@@ -6,7 +6,6 @@ import { Form } from './components/Form/Form';
 const newAuthor = 'Evgeniy';
 let botName = 'Bot';
 let botText = 'Messenger bot welcomes you!';
-let author = '';
 
 function App() {
   const [messageList, setMessage] = useState([]);
@@ -20,10 +19,8 @@ function App() {
   const timer = useRef(null);
 
   const addBotMessage = () => {
-    {messageList.map(msg => 
-      author = msg.author
-    )};
-    if (author !== 'Bot' && author !== '') {
+    let msgAuthor = messageList[messageList.length - 1]?.author;
+    if (msgAuthor !== 'Bot' && msgAuthor !== '' && msgAuthor !== undefined) {
       timer.current = setTimeout(() => {
         setMessage([...messageList, {text: botText, author: botName}]);
       }, 1500);
